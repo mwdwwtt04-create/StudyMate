@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyMate | رفيق دراستك</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0b1020;
+color:white;
+}
+header{
+padding:25px;
+background:#151d35;
+text-align:center;
+border-bottom:1px solid #293653;
+}
+header h1{color:#7c9cff;margin:0 0 8px}
+main{max-width:850px;margin:25px auto;padding:15px}
+.welcome{
+background:linear-gradient(135deg,#273e79,#6546a5);
+padding:25px;border-radius:18px;
+margin-bottom:20px;
+}
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+.card{
+background:#151d35;
+padding:20px;
+border-radius:15px;
+border:1px solid #293653;
+}
+.card h3{color:#91aaff}
+input,button{
+width:100%;padding:13px;
+border:0;border-radius:9px;
+margin-top:10px;font-size:15px;
+}
+input{background:#27324c;color:white}
+button{
+background:#647ff5;color:white;
+font-weight:bold;cursor:pointer;
+}
+button:hover{background:#8297ff}
+#tasks{padding:0;list-style:none}
+#tasks li{
+background:#27324c;padding:12px;
+margin:8px 0;border-radius:8px;
+display:flex;justify-content:space-between;
+}
+.done{text-decoration:line-through;opacity:.5}
+footer{text-align:center;color:#8793ae;padding:30px}
+@media(max-width:550px){
+.cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🎓 StudyMate</h1>
+<p>رفيقك الذكي للنجاح والتفوق</p>
+</header>
+
+<main>
+<section class="welcome">
+<h2>أهلاً بيك في StudyMate 👋</h2>
+<p>نظم وقتك، تابع مهامك، وحقق أهدافك الدراسية.</p>
+</section>
+
+<div class="cards">
+<section class="card">
+<h3>📚 مهامي الدراسية</h3>
+<input id="taskInput" placeholder="اكتب المهمة الجديدة">
+<button onclick="addTask()">إضافة مهمة +</button>
+<ul id="tasks"></ul>
+</section>
+
+<section class="card">
+<h3>🧠 اختبار سريع</h3>
+<p id="question">ما عاصمة مصر؟</p>
+<button onclick="answer(true)">القاهرة</button>
+<button onclick="answer(false)">الإسكندرية</button>
+<p id="result"></p>
+</section>
+
+<section class="card">
+<h3>🎯 هدف اليوم</h3>
+<p>ذاكر لمدة ساعة على الأقل اليوم.</p>
+</section>
+
+<section class="card">
+<h3>💡 نصيحة دراسية</h3>
+<p>قسم وقت المذاكرة إلى فترات قصيرة وخذ استراحة بينها.</p>
+</section>
+</div>
+</main>
+
+<footer>StudyMate © 2026 - بالتوفيق في دراستك ❤️</footer>
+
+<script>
+function addTask(){
+const input=document.getElementById('taskInput');
+if(!input.value.trim())return;
+const li=document.createElement('li');
+const span=document.createElement('span');
+span.textContent=input.value;
+span.onclick=()=>span.classList.toggle('done');
+const del=document.createElement('button');
+del.textContent='حذف';
+del.style.width='65px';
+del.style.margin='0';
+del.onclick=()=>li.remove();
+li.append(span,del);
+document.getElementById('tasks').appendChild(li);
+input.value='';
+}
+function answer(correct){
+document.getElementById('result').textContent=
+correct?'🎉 إجابة صحيحة!':'❌ حاول مرة أخرى!';
+}
+</script>
+</body>
+</html>
